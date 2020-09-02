@@ -10,12 +10,13 @@ import main.java.com.sql.column.ColumnType;
 import main.java.com.sql.table.Table;
 
 public class Driver {	
+	
 	public static void main(String args[]) {
-		checkSQLQueries();
+		createAndPopulateTable();
 	}
 	
-	private static void checkSQLQueries() {
-		Table tab = createTable("name_table");
+	private static void createAndPopulateTable() {
+		Table tab = createTable("match_score");
 		populateTable(tab, 5);
 		tab.printData();
 	}
@@ -23,7 +24,7 @@ public class Driver {
 	private static Table createTable(String tableName) {
 		List<Column> cols = new ArrayList<>();
 		Column nameCol = new Column("name", ColumnType.STRING_TYPE);
-		Column numCol = new Column("number", ColumnType.INT_TYPE);
+		Column numCol = new Column("score", ColumnType.INT_TYPE);
 		
 		cols.add(nameCol);
 		cols.add(numCol);
@@ -38,7 +39,7 @@ public class Driver {
 			Map<Column, String> columnValues = new HashMap<>();
 			for(Column col : tab.getColumns()) {
 				if(col.getName().equals("name"))
-					columnValues.put(col, "ravi"+i);
+					columnValues.put(col, "name_"+i);
 				else
 					columnValues.put(col, String.valueOf(val + i));
 			}
